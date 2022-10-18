@@ -1,10 +1,8 @@
-package assignment2;
+package Assignment2;
 
 public class Main {
-	
 	public static void main(String[] args) {
-		Title.draw();
+		int gameState; 
+		Title.draw();		
 	}
-	
-	
 }
