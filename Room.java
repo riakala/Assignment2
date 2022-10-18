@@ -1,4 +1,4 @@
-package assignment2;
+package Assignment2;
 
 public class Room {
 	boolean exitNorth;
@@ -16,6 +16,10 @@ public class Room {
 						{48, 49, 50, 51, 52, 53, 54, 55},
 						{56, 57, 58, 59, 60, 61, 62, 63}						
 					  };
+	
+	// which rooms have which exits methods below:
+	
+		// access by row u can do the exits and then reset values to true/false
 	
 	// test rooms else/if ladder
 	
@@ -136,5 +140,4 @@ public class Room {
 			}
 					
 		}
-	
 }
