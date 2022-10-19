@@ -1,10 +1,10 @@
 package Assignment2;
 
 public class Room {
-	boolean exitNorth;
-	boolean exitEast;
-	boolean exitSouth;
-	boolean exitWest;
+	int exitNorth;
+	int exitEast;
+	int exitSouth;
+	int exitWest;
 	
 	int myRooms[][] = {
 						{0, 1, 2, 3, 4, 5, 6, 7},
@@ -19,111 +19,150 @@ public class Room {
 	
 	// which rooms have which exits methods below:
 	
+	/*
+	public void exitNorthRooms(int[][] myRoomsNorth, int exitNorth) {
+		myRoomsNorth = myRooms;
+		this.exitNorth = exitNorth;
+		
+		myRoomsNorth = {
+					{0, 0, 0, 0, 0, 0, 0, 0,},
+					{1, 1, 0, 0, 1, 1, 1, 0},
+					{0, 0, 1, 1, 1, 1, 0, 1},
+					{1, 0, 1, 1, 1, 1, 0, 1},
+					{1, 1, 1, 0, 1, 1, 1, 1},
+					{1, 1, 0, 0, 0, 1, 1, 1},
+					{1, 0, 0, 0, 0, 0, 1, 1},
+					{1, 1, 1, 1, 1, 1, 1, 1}
+		};
+	}
+	*/
+	
+	
+	public void exitEastRooms(int[][] myRooms) {
+		this.myRooms = myRooms;
+		
+	}
+	
+	public void exitSouthRooms(int[][] myRooms) {
+		this.myRooms = myRooms;
+		
+	}
+	
+	public void exitWestRooms(int[][] myRooms) {
+		this.myRooms = myRooms;
+		
+	}
+	
 		// access by row u can do the exits and then reset values to true/false
 	
 	// test rooms else/if ladder
+	// true == 1, false == 0
 	
-		public void drawRoom(boolean exitNorth,boolean exitEast, boolean exitSouth, boolean exitWest) {
+		public void drawRoom(int exitNorth, int exitEast, int exitSouth, int exitWest) {
+			this.exitNorth = exitNorth;
+			this.exitEast = exitEast;
+			this.exitSouth = exitSouth;
+			this.exitWest = exitWest;
 			
-			if(exitNorth == true && exitEast == true && exitSouth == true && exitWest == true) {
+			if(exitNorth == 1 && exitEast == 1 && exitSouth == 1 && exitWest == 1) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "-----   ------\r\n"
 								 + "-----   ------\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == true && exitEast == true && exitSouth == false && exitWest == true) {
+			} else if(exitNorth == 1 && exitEast == 1 && exitSouth == 0 && exitWest == 1) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "-----   ------\r\n"
 								 + "--------------\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if (exitNorth == true && exitEast == false && exitSouth == true && exitWest == true) {
+			} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 1 && exitWest == 1) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "-----   |+++++\r\n"
 								 + "_____   |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == false && exitEast == true && exitSouth == true && exitWest == true) {
+			} else if(exitNorth == 0 && exitEast == 1 && exitSouth == 1 && exitWest == 1) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "--------------\r\n"
 								 + "------  ------\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == true && exitEast == true && exitSouth == true && exitWest == false) {
+			} else if(exitNorth == 1 && exitEast == 1 && exitSouth == 1 && exitWest == 0) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|   -----\r\n"
 								 + "+++++|   -----\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == true && exitEast == false && exitSouth == false && exitWest == true) {
+			} else if(exitNorth == 1 && exitEast == 0 && exitSouth == 0 && exitWest == 1) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "-----   |+++++\r\n"
 								 + "________|+++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if(exitNorth == true && exitEast == true && exitSouth == false && exitWest == false) {
+			} else if(exitNorth == 1 && exitEast == 1 && exitSouth == 0 && exitWest == 0) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|   -----\r\n"
 								 + "+++++|________\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if(exitNorth == false && exitEast == false && exitSouth == true && exitWest == true) {
+			} else if(exitNorth == 0 && exitEast == 0 && exitSouth == 1 && exitWest == 1) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "--------|+++++\r\n"
 								 + "------  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == false && exitEast == true && exitSouth == true && exitWest == false) {
+			} else if(exitNorth == 0 && exitEast == 1 && exitSouth == 1 && exitWest == 0) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "+++++|--------\r\n"
 								 + "+++++|   -----\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == true && exitEast == false && exitSouth == true && exitWest == false) {
+			} else if(exitNorth == 1 && exitEast == 0 && exitSouth == 1 && exitWest == 0) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == false && exitEast == true && exitSouth == false && exitWest == true) {
+			} else if(exitNorth == 0 && exitEast == 1 && exitSouth == 0 && exitWest == 1) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "--------------\r\n"
 								 + "______________\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if (exitNorth == true && exitEast == false && exitSouth == false && exitWest == false) {
+			} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 0 && exitWest == 0) {
 				System.out.println("+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|__|+++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if(exitNorth == false && exitEast == true && exitSouth == false && exitWest == false) {
+			} else if(exitNorth == 0 && exitEast == 1 && exitSouth == 0 && exitWest == 0) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++--------\r\n"
 								 + "++++++|_______\r\n"
 								 + "++++++++++++++\r\n"
 								 + "++++++++++++++");
-			} else if(exitNorth == false && exitEast == false && exitSouth == true && exitWest == false) {
+			} else if(exitNorth == 0 && exitEast == 0 && exitSouth == 1 && exitWest == 0) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "+++++----+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++\r\n"
 								 + "+++++|  |+++++");
-			} else if(exitNorth == false && exitEast == false && exitSouth == false && exitWest == true) {
+			} else if(exitNorth == 0 && exitEast == 0 && exitSouth == 0 && exitWest == 1) {
 				System.out.println("++++++++++++++\r\n"
 								 + "++++++++++++++\r\n"
 								 + "--------|+++++\r\n"
