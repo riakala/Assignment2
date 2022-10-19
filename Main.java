@@ -5,4 +5,7 @@ public class Main {
 		int gameState; 
 		Title.draw();		
 	}
+	
+	// use a constructor somewhere then call it in main depending on the exit possibly(?)
+	
 }
