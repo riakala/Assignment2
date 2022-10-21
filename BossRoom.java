@@ -1,5 +1,5 @@
 package assignment2;
 
-public class BossRoom {
+public class BossRoom extends Room {
 
 }
