@@ -37,6 +37,11 @@ public class Room {
 	}
 	*/
 	
+	/*
+	public void checkArray() {
+		System.out.println(myRooms[0][7]);
+	}
+	*/
 	
 	public void exitEastRooms(int[][] myRooms) {
 		this.myRooms = myRooms;
