@@ -7,7 +7,8 @@ public class Room {
 	int exitEast;
 	int exitSouth;
 	int exitWest;
-	int roomID;
+	int x;
+	int y;
 	
 	// array of rooms + general idea of 64 square map
 	
@@ -88,11 +89,16 @@ public class Room {
 	/* test rooms else/if ladder
 	   true == 1, false == 0 */
 	
-		public void drawRoom(int exitNorth, int exitEast, int exitSouth, int exitWest) {
-			this.exitNorth = exitNorth;
-			this.exitEast = exitEast;
-			this.exitSouth = exitSouth;
-			this.exitWest = exitWest;
+	// Room0{
+	// exitNorth
+	// exitSouth
+	// exitWest
+	// exitEast
+	// }
+	
+	// Room0.drawRoom()
+	
+		public void drawRoom() {
 			
 			if(exitNorth == 1 && exitEast == 1 && exitSouth == 1 && exitWest == 1) {
 				System.out.println("+++++|  |+++++\r\n"
@@ -213,11 +219,8 @@ public class Room {
 		
 		// prompts user to move around map
 		
-		public void moveRoom(int exitNorth, int exitEast, int exitSouth, int exitWest) {
-			this.exitNorth = exitNorth;
-			this.exitEast = exitEast;
-			this.exitSouth = exitSouth; 
-			this.exitWest = exitWest;
+		public int moveRoom() {
+
 			String direc;
 			
 			System.out.println("Where would you like to move? (n, e, s, w)");
@@ -225,6 +228,7 @@ public class Room {
 			
 			if (direc == "n") {
 				// check exitNorthRooms() using roomID and based on that, either draw or display that action cannot be taken
+				
 			}
 		}
 }
