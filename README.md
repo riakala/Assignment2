@@ -26,3 +26,50 @@ public class Sample {
 		sets currentRoom to the resulting room from moveRoom
 
 }
+
+Room map[][] = {};
+		
+		for i to 8
+			for j to 8
+				room newroom
+				newroom.sety(i)
+				// newroom.y == i
+				newroom.setx(j)
+				// newroom.x == i
+				newroom.setexitnorth = exitsNorth[i][j]
+				// newroom.exitnorth == exitsNorth[i][j]
+				.
+				.
+				.
+				map[i][j] = newroom
+		
+		currentRoom = map[1][0]
+		currentRoom.drawRoom()
+		get input -> // "n"
+		// moveroom takes direction as a parameter,
+		// checks whether an exit exists in that direction,
+		// and returns the corresponding Room object
+		currentRoom = currentRoom.moveRoom("n")
+			if parameter == "n"
+				if exitNorth == 1
+				return map[currentRoom.y - 1][currentRoom.x]
+				
+		
+		Room testRoom = new Room();
+		testRoom.exitEast = 0;
+		testRoom.exitNorth = 1;
+		testRoom.exitSouth = 0;
+		testRoom.exitWest = 1;
+		System.out.println(testRoom.exitEast);
+		
+		Room testRoom = new Room();
+		testRoom.exitEast = 75;
+		System.out.println(testRoom.exitEast);
+		
+		
+		testRoom.drawRoom();
+		
+		drawRoom(1,0,1,0);
+		
+		testRoom.drawRoom(1, 0, 1, 0);
+
