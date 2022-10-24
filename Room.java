@@ -1,4 +1,4 @@
-package assignment2;
+package Assignment2;
 import java.util.Scanner;
 
 public class Room {
@@ -7,8 +7,8 @@ public class Room {
 	int exitEast;
 	int exitSouth;
 	int exitWest;
-	int x;
-	int y;
+	private int x;
+	private int y;
 	
 	// array of rooms + general idea of 64 square map
 	
@@ -27,17 +27,26 @@ public class Room {
 
 	public void exitNorthRooms(int exitNorth) {	
 		this.exitNorth = exitNorth;
-		
-		int myRoomsNorth[][] = {
-					{0, 0, 0, 0, 0, 0, 0, 0},
-					{1, 1, 0, 0, 1, 1, 1, 1},
-					{0, 0, 1, 1, 1, 1, 0, 1},
-					{1, 0, 1, 1, 1, 1, 0, 1},
-					{1, 1, 1, 0, 1, 1, 1, 1},
-					{1, 1, 0, 0, 0, 1, 1, 1},
-					{1, 0, 0, 0, 0, 0, 1, 1},
-					{1, 1, 1, 1, 1, 1, 1, 1}
-		};
+	
+	}
+	
+	private int myRoomsNorth[][] = {
+			{0, 0, 0, 0, 0, 0, 0, 0},
+			{1, 1, 0, 0, 1, 1, 1, 1},
+			{0, 0, 1, 1, 1, 1, 0, 1},
+			{1, 0, 1, 1, 1, 1, 0, 1},
+			{1, 1, 1, 0, 1, 1, 1, 1},
+			{1, 1, 0, 0, 0, 1, 1, 1},
+			{1, 0, 0, 0, 0, 0, 1, 1},
+			{1, 1, 1, 1, 1, 1, 1, 1}
+	};
+	
+	public void setMyRoomsNorth(int myRoomsNorth[][]) {
+		this.myRoomsNorth = myRoomsNorth;
+	}
+	
+	public int[][] getMyRoomsNorth() {
+		return myRoomsNorth;
 	}
 	
 	
@@ -84,6 +93,24 @@ public class Room {
 				    {0, 0, 1, 1, 0, 1, 0, 1},
 				    {0, 1, 1, 0, 1, 1, 1, 1}
 		};
+	}
+	
+	// setter and getter for private int x/y
+	
+	public void setX(int x) { // prob do not need
+		this.x = x;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public void setY(int y) { // prob dont need
+		this.y = y;
+	}
+	
+	public int getY() {
+		return y;
 	}
 	
 	/* test rooms else/if ladder
@@ -219,7 +246,7 @@ public class Room {
 		
 		// prompts user to move around map
 		
-		public int moveRoom() {
+		public void moveRoom() {
 
 			String direc;
 			
