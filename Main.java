@@ -13,9 +13,12 @@ public class Main {
 				Room newRoom = new Room();
 				newRoom.setY(i);
 				newRoom.setX(j);
-				newRoom.setMyRoomsNorth = myRoomsNorth[i][j];
+				// set north exits to object by making it equal to myRoomsNorth[i][j]
+				// take newRoom object and give it the properties of myRoomsNorth array
+				// newRoom.getMyRoomsNorth();
+	
 				
-				map[i][j] = newRoom;
+				
 			}
 		}
 		
@@ -24,3 +27,4 @@ public class Main {
 	
 	
 }
+
