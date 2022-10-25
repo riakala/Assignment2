@@ -10,7 +10,7 @@ public class Room {
 	private int x;
 	private int y;
 	
-	// array of rooms + general idea of 64 square map
+	// array of rooms + general idea of 64 square map (not in use)
 	
 	int myRooms[][] = {
 			{0, 1, 2, 3, 4, 5, 6, 7},
@@ -23,11 +23,11 @@ public class Room {
 			{56, 57, 58, 59, 60, 61, 62, 63}						
 		  };
 	
+	
 	// which rooms have which exits methods below:
 
 	public void exitNorthRooms(int exitNorth) {	
-		this.exitNorth = exitNorth;
-	
+		this.exitNorth = exitNorth;	
 	}
 	
 	private int myRoomsNorth[][] = {
@@ -49,6 +49,7 @@ public class Room {
 		return myRoomsNorth;
 	}
 	
+	// take newRoom object and give it the properties of myRoomsNorth array
 	
 	public void exitEastRooms(int exitEast) {
 		this.exitEast = exitEast;
@@ -101,17 +102,17 @@ public class Room {
 		this.x = x;
 	}
 	
-	public int getX() {
-		return x;
-	}
+	//public int getX() {
+	//	return x;
+//	}
 	
 	public void setY(int y) { // prob dont need
 		this.y = y;
 	}
 	
-	public int getY() {
-		return y;
-	}
+//	public int getY() {
+//		return y;
+//	}
 	
 	/* test rooms else/if ladder
 	   true == 1, false == 0 */
@@ -253,8 +254,13 @@ public class Room {
 			System.out.println("Where would you like to move? (n, e, s, w)");
 			direc = myObj.nextLine(); 
 			
-			if (direc == "n") {
-				// check exitNorthRooms() using roomID and based on that, either draw or display that action cannot be taken
+			if (direc == "n") {				
+				// check exitNorthRooms() using roomID and based on that, either draw or display that action cannot be taken			
+			} else if (direc == "e") {
+				
+			} else if (direc == "s") {
+				
+			} else if (direc == "w") {
 				
 			}
 		}
