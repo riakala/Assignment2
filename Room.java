@@ -10,6 +10,13 @@ public class Room {
 	private int x;
 	private int y;
 	
+	Room(int exitNorth, int exitEast, int exitSouth, int exitWest) {
+		this.exitNorth = exitNorth;
+		this.exitEast = exitEast;
+		this.exitSouth = exitSouth;
+		this.exitWest = exitWest;
+	}
+	
 	// array of rooms + general idea of 64 square map (not in use)
 	
 	int myRooms[][] = {
@@ -23,108 +30,10 @@ public class Room {
 			{56, 57, 58, 59, 60, 61, 62, 63}						
 		  };
 	
-	
-	// which rooms have which exits methods below:
 
-	public void exitNorthRooms(int exitNorth) {	
-		this.exitNorth = exitNorth;	
-	}
-	
-	private int myRoomsNorth[][] = {
-			{0, 0, 0, 0, 0, 0, 0, 0},
-			{1, 1, 0, 0, 1, 1, 1, 1},
-			{0, 0, 1, 1, 1, 1, 0, 1},
-			{1, 0, 1, 1, 1, 1, 0, 1},
-			{1, 1, 1, 0, 1, 1, 1, 1},
-			{1, 1, 0, 0, 0, 1, 1, 1},
-			{1, 0, 0, 0, 0, 0, 1, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1}
-	};
-	
-	public void setMyRoomsNorth(int myRoomsNorth[][]) {
-		this.myRoomsNorth = myRoomsNorth;
-	}
-	
-	public int[][] getMyRoomsNorth() {
-		return myRoomsNorth;
-	}
-	
-	// take newRoom object and give it the properties of myRoomsNorth array
-	
-	public void exitEastRooms(int exitEast) {
-		this.exitEast = exitEast;
-		
-		int myRoomsEast[][] = {
-					{0, 1, 1, 1, 1, 0, 1, 0},
-					{1, 1, 1, 1, 0, 1, 0, 0},
-					{1, 1, 0, 0, 0, 1, 1, 0},
-					{0, 1, 1, 1, 0, 1, 0, 0},
-					{1, 1, 0, 0, 1, 0, 0, 0},
-					{0, 1, 1, 1, 1, 0, 0, 0},
-					{0, 1, 1, 0, 1, 0, 1, 0},
-					{1, 1, 0, 1, 1, 1, 1, 0}
-		};	
-	}
-	
-	public void exitSouthRooms(int exitSouth) {
-		this.exitSouth = exitSouth;
-		
-		int myRoomsSouth[][] = {
-				    {1, 1, 0, 0, 1, 1, 1, 1},
-				    {0, 0, 1, 1, 1, 1, 0, 1},
-				    {1, 0, 1, 1, 1, 1, 0, 1},
-				    {1, 1, 1, 0, 1, 1, 1, 1},
-				    {1, 1, 0, 0, 0, 1, 1, 1},
-				    {1, 0, 0, 0, 0, 0, 1, 1},
-				    {1, 1, 1, 1, 1, 1, 1, 1},
-				    {0, 0, 0, 0, 0, 0, 0, 0}
-		};
-	}
-	
-	public void exitWestRooms(int exitWest) {
-		this.exitWest = exitWest;
-		
-		int myRoomsWest[][] = {
-				    {0, 0, 1, 1, 1, 1, 0, 1},
-				    {0, 1, 1, 1, 1, 0, 1, 0},
-				    {0, 1, 1, 0, 0, 0, 1, 1},
-				    {0, 0, 1, 1, 1, 0, 1, 0},
-				    {0, 1, 1, 0, 0, 1, 0, 0},
-				    {0, 0, 1, 1, 1, 1, 0, 0},
-				    {0, 0, 1, 1, 0, 1, 0, 1},
-				    {0, 1, 1, 0, 1, 1, 1, 1}
-		};
-	}
-	
-	// setter and getter for private int x/y
-	
-	public void setX(int x) { // prob do not need
-		this.x = x;
-	}
-	
-	//public int getX() {
-	//	return x;
-//	}
-	
-	public void setY(int y) { // prob dont need
-		this.y = y;
-	}
-	
-//	public int getY() {
-//		return y;
-//	}
 	
 	/* test rooms else/if ladder
 	   true == 1, false == 0 */
-	
-	// Room0{
-	// exitNorth
-	// exitSouth
-	// exitWest
-	// exitEast
-	// }
-	
-	// Room0.drawRoom()
 	
 		public void drawRoom() {
 			
@@ -246,22 +155,49 @@ public class Room {
 		
 		
 		// prompts user to move around map
+	
 		
-		public void moveRoom() {
+		public int moveRoom() {
 
 			String direc;
+			int returnValue = 0;
 			
 			System.out.println("Where would you like to move? (n, e, s, w)");
 			direc = myObj.nextLine(); 
 			
-			if (direc == "n") {				
-				// check exitNorthRooms() using roomID and based on that, either draw or display that action cannot be taken			
-			} else if (direc == "e") {
+			// takes return value of direc and adds it to the room
+			
+			if (direc.equals("n")) {				
+				if(this.exitNorth == 1) {
+					returnValue = 1;
+				} else {
+					returnValue = 0;
+				}
 				
-			} else if (direc == "s") {
+			} else if (direc.equals("e")) {
+				if(this.exitEast == 1) {
+					returnValue = 1;
+				} else {
+					returnValue = 0;
+				}
 				
-			} else if (direc == "w") {
+			} else if (direc.equals("s")) {
+				if (this.exitSouth == 1) {
+					returnValue = 1;
+				} else {
+					returnValue = 0;
+				}		
+				
+			} else if (direc.equals("w")) {
+				if (this.exitWest == 1) {
+					returnValue = 1;
+				} else {
+					returnValue = 0;
+				}
 				
 			}
+			
+			return returnValue;
+			
 		}
 }
