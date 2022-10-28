@@ -1,4 +1,4 @@
-package assignment2;
+package Assignment2;
 import java.util.Scanner;
 
 public class Room {
@@ -172,6 +172,7 @@ public class Room {
 					returnValue = 1;
 				} else {
 					returnValue = 0;
+					System.out.println("You cannot exit this direction.");
 				}
 				
 			} else if (direc.equals("e")) {
@@ -179,6 +180,7 @@ public class Room {
 					returnValue = 1;
 				} else {
 					returnValue = 0;
+					System.out.println("You cannot exit this direction.");
 				}
 				
 			} else if (direc.equals("s")) {
@@ -186,6 +188,7 @@ public class Room {
 					returnValue = 1;
 				} else {
 					returnValue = 0;
+					System.out.println("You cannot exit this direction.");
 				}		
 				
 			} else if (direc.equals("w")) {
@@ -193,6 +196,7 @@ public class Room {
 					returnValue = 1;
 				} else {
 					returnValue = 0;
+					System.out.println("You cannot exit this direction.");
 				}			
 			}			
 			return returnValue;			
