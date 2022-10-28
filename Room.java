@@ -1,4 +1,4 @@
-package Assignment2;
+package assignment2;
 import java.util.Scanner;
 
 public class Room {
@@ -193,11 +193,10 @@ public class Room {
 					returnValue = 1;
 				} else {
 					returnValue = 0;
-				}
-				
-			}
-			
-			return returnValue;
-			
+				}			
+			}			
+			return returnValue;			
 		}
+		
+		
 }
