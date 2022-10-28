@@ -1,7 +1,16 @@
-package assignment2;
+package Assignment2;
 import java.util.Scanner;
 
 public class Main {
+	
+	public int changeValueY(Room[][] currentRoom, int currentRoomY, int currentRoomX) {
+		currentRoomY = currentRoom[currentRoomY][currentRoomX].drawRoom();
+		return currentRoomY;
+	}
+	
+	public int changeValueY() {
+		
+	}
 
 	public static void main(String[] args) {
 		Scanner myObj = new Scanner(System.in);
@@ -66,8 +75,11 @@ public class Main {
 			 * currentroom col/row = moveRoom return value
 			 * return currentroom
 			 * draw currentroom
+			 * 
 			 * call moveroom
 			 */
+			
+			// if return value is 0, prompt moveRoom
 			
 			Title.draw();
 			gameState = myObj.nextInt();
@@ -85,13 +97,10 @@ public class Main {
 		
 		currentRoom[currentRoomY][currentRoomX].drawRoom(); 
 		currentRoom[currentRoomY][currentRoomX].moveRoom();
-		
+		gameState = 0;
 	
 		} while (gameState == 1);
 		
 	}
 	
-	public void changeYValue() {
-		if (currentRoom[currentRoomY][currentRoomX])
-	}
-}
+}	
