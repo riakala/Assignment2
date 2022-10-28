@@ -1,13 +1,15 @@
-package Assignment2;
+package assignment2;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Scanner myObj = new Scanner(System.in);
 		int gameState = 0; 
 		int numRoomsX = 8;
 		int numRoomsY = 8;
 		int currentRoomX = 0;
-		int currentRoomY = 0;;
+		int currentRoomY = 0;
 	
 		Room map[][] = new Room[numRoomsY][numRoomsX]; // create 2d room object array
 		Room currentRoom[][] = new Room[numRoomsY][numRoomsX];
@@ -57,8 +59,8 @@ public class Main {
 			    {0, 1, 1, 0, 1, 1, 1, 1}
 	};
 		
-		do {
-			Title.draw();	
+		do {				
+			
 			/*
 			 * draw first room with current room variables not i and j
 			 * currentroom col/row = moveRoom return value
@@ -66,19 +68,30 @@ public class Main {
 			 * draw currentroom
 			 * call moveroom
 			 */
+			
+			Title.draw();
+			gameState = myObj.nextInt();
+			System.out.println("Welcome to Ria Game which is named that not due to a lack of creativity. You have found yourself in a maze with ");
+			System.out.println("an inevitable chance of death however, it is up to you to naviagte through this map and change your fate");
+			System.out.println();
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				map[i][j] = new Room(myRoomsNorth[i][j], myRoomsEast[i][j], myRoomsSouth[i][j], myRoomsWest[i][j]);
-				currentRoom[i][j] = map[i][j]; 
+				currentRoom[i][j] = map[i][j];
+				
 			}
 		}
 		
+		currentRoom[currentRoomY][currentRoomX].drawRoom(); 
+		currentRoom[currentRoomY][currentRoomX].moveRoom();
 		
 	
 		} while (gameState == 1);
 		
 	}
 	
-	
+	public void changeYValue() {
+		if (currentRoom[currentRoomY][currentRoomX])
+	}
 }
