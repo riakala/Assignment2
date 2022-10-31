@@ -3,7 +3,7 @@
  * where a final show down will occur. The user faces the boss on an either hard or regular difficulty (the only
  * difference being the amount of damage able to receive/deal). The game state at the end of this class is set to 0,
  * determining the game as over.
- * Last edited: October 30th, 2022
+ * Last edited: October 31th, 2022
  */
 
 package Assignment2;
