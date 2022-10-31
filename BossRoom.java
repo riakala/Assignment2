@@ -10,8 +10,8 @@ import java.util.Random;
 
 public class BossRoom extends Room {
 	
-	// ansi reference values taken from https://www.geeksforgeeks.org/how-to-print-colored-text-in-java-console/
-	final String ANSI_RESET = "\u001B[0m";
+    // ansi reference values taken from https://www.geeksforgeeks.org/how-to-print-colored-text-in-java-console/
+    final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
     Scanner myObj = new Scanner(System.in);
 	
