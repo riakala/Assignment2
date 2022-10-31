@@ -1,13 +1,15 @@
 /* BossRoom.java
- * Purpose: write stuff about boss room class
+ * Purpose: Once the user reaches a designated room (row 6, column 5), the user is prompted to enter the boss room, 
+ * where a final show down will occur. The user faces the boss on an either hard or regular difficulty (the only
+ * difference being the amount of damage able to receive/deal). The game state at the end of this class is set to 0,
+ * determining the game as over.
  * Last edited: October 30th, 2022
  */
 
-package assignment2;
+package Assignment2;
 import java.util.Scanner;
 import java.io.*;
 import java.util.Random;
-
 public class BossRoom extends Room {
 	
     // ansi reference values taken from https://www.geeksforgeeks.org/how-to-print-colored-text-in-java-console/
@@ -64,7 +66,7 @@ public class BossRoom extends Room {
 				+ "                      |___||___|      |___||___|" + ANSI_RESET);
 	}
 	
-	public int bossFight() {
+	public int bossFight() { // regular mode
 		Random rand = new Random();
 		int bossHealth = 100;
 		int userHealth = 100;
@@ -98,6 +100,52 @@ public class BossRoom extends Room {
 			} else if ((bossResponse == 2) && userResponse.equals("a")) {
 				System.out.println(ANSI_RED +  "YOU MANAGED TO ATTACK THE BOSS AS HE WAS DEFENDING AND DEALT SOME DAMAGE" +  ANSI_RESET);
 				int bossDamage = rand.nextInt(20) + 1;
+				bossHealth -= bossDamage;
+			}
+		}
+		
+		if (userHealth > 0) {
+			System.out.println(ANSI_RED +  "CONGRATULATIONS YOU HAVE DEFEATED THE BOSS! DRINK A GLASS OF MILK OR SOMETHING" +  ANSI_RESET);
+		} else {
+			System.out.println(ANSI_RED +  "THE BOSS DEFEATED YOU. UNFORTUNATELY THIS IS GAME OVER FOR YOU!!!!!!! XD" +  ANSI_RESET);
+		}	
+		return 0;
+	}
+	
+	public int bossFightImpossible() { // hard mode (add extra add-ons that make it more difficult)
+		Random rand = new Random();
+		int bossHealth = 100;
+		int userHealth = 100;
+		String userResponse;
+		
+		while ((bossHealth > 0) && (userHealth > 0)) {
+			int bossResponse = rand.nextInt(2) + 1; // 1 = fight, 2 = defend
+			System.out.println(ANSI_RED +  "YOUR HEALTH: " + userHealth	+  ANSI_RESET);
+			System.out.println(ANSI_RED +  "BOSS HEALTH: " + bossHealth	+  ANSI_RESET);
+			System.out.println(ANSI_RED +  "YOU HAVE PICKED HARD MODE, HOW WOULD YOU LIKE TO PROCEED? (a: ATTACK, d: DEFEND)"	+  ANSI_RESET);
+			userResponse = myObj.nextLine(); 
+			
+			if ((bossResponse == 1) && userResponse.equals("a")) {
+				System.out.println(ANSI_RED +  "YOU BOTH CHOSE TO FIGHT" +  ANSI_RESET);
+				int userDamage = rand.nextInt(80) + 1;
+				int bossDamage = rand.nextInt(15) + 1;
+				userHealth -= userDamage;
+				bossHealth -= bossDamage;
+				
+			} else if ((bossResponse == 1) && userResponse.equals("d")) {
+				System.out.println(ANSI_RED +  "THE BOSS VICIOUSLY ATTACKS YOU AS YOU (COW)ER IN SHAME" +  ANSI_RESET);
+				int userDamage = rand.nextInt(55) + 1;
+				userHealth -= userDamage;	
+				
+			} else if ((bossResponse == 2) && userResponse.equals("d")) {
+				System.out.println(ANSI_RED +  "YOU BOTH CHOSE TO DEFEND HOWEVER DUE TO THIS GAME BEING UNFAIR, YOU WERE DEALT DAMAGE"
+						+ " DUE TO YOUR (COW)ARDNESS"	+  ANSI_RESET);
+				int userDamage = rand.nextInt(20) + 1;
+				userHealth -= userDamage;
+				
+			} else if ((bossResponse == 2) && userResponse.equals("a")) {
+				System.out.println(ANSI_RED +  "YOU MANAGED TO ATTACK THE BOSS AS HE WAS DEFENDING AND DEALT SOME DAMAGE" +  ANSI_RESET);
+				int bossDamage = rand.nextInt(10) + 1;
 				bossHealth -= bossDamage;
 			}
 		}
