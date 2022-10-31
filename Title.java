@@ -7,8 +7,8 @@
 package assignment2;
 
 public class Title {
-	// ANSI colour codes
-	final static String ANSI_RESET = "\u001B[0m";
+    // ANSI colour codes
+    final static String ANSI_RESET = "\u001B[0m";
     final static String ANSI_YELLOW = "\u001B[33m";
     final static String ANSI_CYAN = "\u001B[36m";
     final static String ANSI_GREEN = "\u001B[32m";
