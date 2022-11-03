@@ -24,7 +24,7 @@ public class Main {
 		int startY = 0;	
 	
 		Room map[][] = new Room[numRoomsY][numRoomsX]; // create 2d room object array	
-		BossRoom bossRoom = new BossRoom(0, 0, 0, 0, 5, 6);
+		BossRoom bossRoom = new BossRoom(0, 0, 0, 0, 5, 6, 0, 0, 0);
 	
 		int myRoomsNorth[][] = {
 				{0, 0, 0, 0, 0, 0, 0, 0},
@@ -69,6 +69,40 @@ public class Main {
 			    {0, 0, 1, 1, 0, 1, 0, 1},
 			    {0, 1, 1, 0, 1, 1, 1, 1}
 		};
+		
+		// make 2d arrays of which rooms have which potions
+		int healthPotionRooms[][] = {
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 1, 0},
+			    {0, 1, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 1, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 1, 0, 0, 1, 0, 1},
+			    {0, 0, 0, 0, 1, 0, 0, 0}
+		};
+		
+		int damagePotionRooms[][] = {
+			    {0, 0, 0, 0, 1, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 1},
+			    {0, 0, 0, 0, 1, 0, 0, 0},
+			    {0, 1, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 1},
+			    {1, 0, 0, 0, 0, 0, 0, 0}
+		};
+		
+		int charmPotionRooms[][] = {
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 1, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0},
+			    {0, 0, 0, 0, 0, 0, 1, 0},
+			    {0, 0, 0, 0, 0, 0, 0, 0}
+		};
 			
 		Title.draw();
 		gameState = myObj.nextInt();
@@ -78,17 +112,18 @@ public class Main {
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				map[i][j] = new Room(myRoomsNorth[i][j], myRoomsEast[i][j], myRoomsSouth[i][j], myRoomsWest[i][j], j, i);
+				map[i][j] = new Room(myRoomsNorth[i][j], myRoomsEast[i][j], myRoomsSouth[i][j], myRoomsWest[i][j], j, i, healthPotionRooms[i][j], damagePotionRooms[i][j], charmPotionRooms[i][j]);
 			}
 		}
 		
 		Room currentRoom = map[startY][startX];
+		Inventory backpack = new Inventory();
 		
 		while (gameState == 1) {
 			if (currentRoom.checkBossRoom()) {
-				gameState = bossRoom.bossUserInterface();
+				gameState = bossRoom.bossUserInterface(backpack);
 					if (gameState == 0) {
-						System.out.println("Would you like to play again?");
+						System.out.println("Would you like to play again? (ENTER '1')");
 						if (myObj.nextInt() == 1) {
 							currentRoom = map[startY][startX];
 							gameState = 1;
@@ -97,6 +132,7 @@ public class Main {
 			}
 			currentRoom.drawRoom();
 			currentRoom = currentRoom.moveRoom(map);
+			currentRoom.hasPotion(backpack);
 		} 				
-	}	
-}	
+	}
+}
