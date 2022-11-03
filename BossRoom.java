@@ -6,30 +6,45 @@
  * Last edited: October 31th, 2022
  */
 
-package Assignment2;
+package assignment2;
 import java.util.Scanner;
 import java.io.*;
 import java.util.Random;
 public class BossRoom extends Room {
 	
+	// variable
+	private int bossHealth = 100;
+	private int userHealth = 100;
+	
     // ansi reference values taken from https://www.geeksforgeeks.org/how-to-print-colored-text-in-java-console/
     final String ANSI_RESET = "\u001B[0m";
     final String ANSI_RED = "\u001B[31m";
+    final String ANSI_PURPLE = "\u001B[35m";
     Scanner myObj = new Scanner(System.in);
-	
-	BossRoom (int exitNorth, int exitEast, int exitSouth, int exitWest, int x, int y) {
-		super(exitNorth, exitEast, exitSouth, exitWest, x, y);
+    
+	// constructor
+	BossRoom (int exitNorth, int exitEast, int exitSouth, int exitWest, int x, int y, int hasHealthPotion, int hasDamagePotion, int hasCharmPotion) {
+		super(exitNorth, exitEast, exitSouth, exitWest, x, y, hasHealthPotion, hasDamagePotion, hasCharmPotion);
 	}	
 	
-	public int bossUserInterface() {
+	// user interface when they choose to fight the boss
+	public int bossUserInterface(Inventory backpack) {
 		String bossRoomEnter;
 		System.out.println("You have reached a room with a mysterious door that leads to a boss room. Would you like to enter? ('y'/'n')");
 		bossRoomEnter = myObj.nextLine();
 		
 		if (bossRoomEnter.equals("y")) {
 			bossIntro();
-			drawBossRoom();
-			return bossFight();			
+			System.out.println(ANSI_PURPLE + "You have " + backpack.healthPotion + ": health potions, " + backpack.damagePotion + ": damage potions, and " + backpack.charmPotion + ": charm potions");
+			System.out.println("Would you like to fight on hard mode ('h') or regular mode ('r')? ");
+			bossRoomEnter = myObj.nextLine();
+			if (bossRoomEnter.equals("r")) {
+				drawBossRoom();
+				return bossFight(backpack);	
+			} else {
+				drawBossRoom();
+				return bossFight();
+			}			
 		}	
 		return 1;
 	}
@@ -44,7 +59,7 @@ public class BossRoom extends Room {
 	
 	public void bossIntro() {
 		// cow artwork taken from https://www.asciiart.eu/animals/cows		
-	    
+	    // introduces the boss and displays ascii art
 		System.out.println(ANSI_RED +  "WELCOME TO THE BOSS ROOM. GOOD LUCK ON DEFEATING THE EVIL HOLY(?) COW! "
 				+ "HE MAY LOOK LIKE A (COW)ARD BUT HE IS MUCH MORE TERRIFYING THAN YOU MAY THINK"	+  ANSI_RESET);
 		System.out.println(ANSI_RED + "   /                       \\\r\n"
@@ -66,7 +81,7 @@ public class BossRoom extends Room {
 				+ "                      |___||___|      |___||___|" + ANSI_RESET);
 	}
 	
-	public int bossFight() { // regular mode
+	public int bossFight(Inventory backpack) { // regular mode
 		Random rand = new Random();
 		int bossHealth = 100;
 		int userHealth = 100;
@@ -76,7 +91,7 @@ public class BossRoom extends Room {
 			int bossResponse = rand.nextInt(2) + 1; // 1 = fight, 2 = defend
 			System.out.println(ANSI_RED +  "YOUR HEALTH: " + userHealth	+  ANSI_RESET);
 			System.out.println(ANSI_RED +  "BOSS HEALTH: " + bossHealth	+  ANSI_RESET);
-			System.out.println(ANSI_RED +  "HOW WOULD YOU LIKE TO PROCEED? (a: ATTACK, d: DEFEND)"	+  ANSI_RESET);
+			System.out.println(ANSI_RED +  "HOW WOULD YOU LIKE TO PROCEED? (a: ATTACK, d: DEFEND, POTION: p)"	+  ANSI_RESET);
 			userResponse = myObj.nextLine(); 
 			
 			if ((bossResponse == 1) && userResponse.equals("a")) {
@@ -101,6 +116,23 @@ public class BossRoom extends Room {
 				System.out.println(ANSI_RED +  "YOU MANAGED TO ATTACK THE BOSS AS HE WAS DEFENDING AND DEALT SOME DAMAGE" +  ANSI_RESET);
 				int bossDamage = rand.nextInt(20) + 1;
 				bossHealth -= bossDamage;
+			} else if (userResponse.equals("p")) {
+				System.out.println("Which potion would you like to use? (health: 'h', damage: 'd', charm: 'c')");
+				userResponse = myObj.nextLine(); 
+				if (userResponse.equals("h")) {
+					System.out.println("You have used a health potion and gained 15 health.");
+					userHealth += 15;
+					backpack.healthPotion --;	
+				} else if (userResponse.equals("d")) {
+					System.out.println("You have used a damage potion and dealt 10 health.");
+					bossHealth -= 10;
+					backpack.healthPotion --;
+				} else if (userResponse.equals("c")) {
+					System.out.println("You have used a charm potion and gained 5 health stolen from the boss.");
+					bossHealth -= 5;
+					userHealth += 5;
+					backpack.healthPotion --;
+				}
 			}
 		}
 		
@@ -112,10 +144,8 @@ public class BossRoom extends Room {
 		return 0;
 	}
 	
-	public int bossFightImpossible() { // hard mode (add extra add-ons that make it more difficult)
+	public int bossFight() { // hard mode 
 		Random rand = new Random();
-		int bossHealth = 100;
-		int userHealth = 100;
 		String userResponse;
 		
 		while ((bossHealth > 0) && (userHealth > 0)) {
