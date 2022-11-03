@@ -9,14 +9,17 @@ import java.util.Scanner;
 public class Room {
 	final static String ANSI_RESET = "\u001B[0m";
     final static String ANSI_YELLOW = "\u001B[33m";
+    final static String ANSI_PURPLE = "\u001B[35m";
 	Scanner myObj = new Scanner(System.in);
+	protected int hasHealthPotion;
+	protected int hasDamagePotion;
+	protected int hasCharmPotion;
 	protected int exitNorth;
 	protected int exitEast;
 	protected int exitSouth;
 	protected int exitWest;
 	protected int x;
-	protected int y;
-	
+	protected int y;	
 	
 	public boolean checkBossRoom() {
 		if ((this.y == 6) && (this.x == 5)) {
@@ -25,19 +28,24 @@ public class Room {
 		return false;
 	}
 	
-	Room (int exitNorth, int exitEast, int exitSouth, int exitWest, int x, int y) {
+	Room (int exitNorth, int exitEast, int exitSouth, int exitWest, int x, int y, int hasHealthPotion, int hasDamagePotion, int hasCharmPotion) {
 		this.exitNorth = exitNorth;
 		this.exitEast = exitEast;
 		this.exitSouth = exitSouth;
 		this.exitWest = exitWest;
 		this.x = x;
 		this.y = y;
+		this.hasHealthPotion = hasHealthPotion;
+		this.hasDamagePotion = hasDamagePotion;
+		this.hasCharmPotion = hasCharmPotion;
 	}	
 	
 	
 	public void drawRoom() {
 		/* rooms else/if ladder
-		   true == 1, false == 0 */
+		   true == 1, false == 0 
+		   draws rooms based on properties of exits
+		*/
 			
 		if(exitNorth == 1 && exitEast == 1 && exitSouth == 1 && exitWest == 1) {
 			System.out.println("+++++|  |+++++\r\n"
@@ -45,106 +53,106 @@ public class Room {
 							 + "-----   ------\r\n"
 							 + "-----   ------\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 1 && exitEast == 1 && exitSouth == 0 && exitWest == 1) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "-----   ------\r\n"
 							 + "--------------\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 1 && exitWest == 1) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "-----   |+++++\r\n"
 							 + "_____   |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 0 && exitEast == 1 && exitSouth == 1 && exitWest == 1) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "--------------\r\n"
 							 + "------  ------\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 1 && exitEast == 1 && exitSouth == 1 && exitWest == 0) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|   -----\r\n"
 							 + "+++++|   -----\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 0 && exitWest == 1) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "-----   |+++++\r\n"
 							 + "________|+++++\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 1 && exitEast == 1 && exitSouth == 0 && exitWest == 0) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|   -----\r\n"
 							 + "+++++|________\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 0 && exitEast == 0 && exitSouth == 1 && exitWest == 1) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "--------|+++++\r\n"
 							 + "------  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 0 && exitEast == 1 && exitSouth == 1 && exitWest == 0) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "+++++|--------\r\n"
 							 + "+++++|   -----\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 1 && exitWest == 0) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 0 && exitEast == 1 && exitSouth == 0 && exitWest == 1) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "--------------\r\n"
 							 + "______________\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 1 && exitEast == 0 && exitSouth == 0 && exitWest == 0) {
 			System.out.println("+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|__|+++++\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 0 && exitEast == 1 && exitSouth == 0 && exitWest == 0) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "++++++--------\r\n"
 							 + "++++++|_______\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
+							 + "++++++++++++++\n");
 		} else if (exitNorth == 0 && exitEast == 0 && exitSouth == 1 && exitWest == 0) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "+++++----+++++\r\n"
 							 + "+++++|  |+++++\r\n"
 							 + "+++++|  |+++++\r\n"
-							 + "+++++|  |+++++");
+							 + "+++++|  |+++++\n");
 		} else if (exitNorth == 0 && exitEast == 0 && exitSouth == 0 && exitWest == 1) {
 			System.out.println("++++++++++++++\r\n"
 							 + "++++++++++++++\r\n"
 							 + "--------|+++++\r\n"
 							 + "________|+++++\r\n"
 							 + "++++++++++++++\r\n"
-							 + "++++++++++++++");
-		} else {
+							 + "++++++++++++++\n");
+		} else { // boss room design with added colour
 			System.out.println(ANSI_YELLOW + "    (\r\n"
 					+ "     )\r\n"
 					+ "    ()\r\n"
@@ -153,13 +161,13 @@ public class Room {
 					+ " .-|  |-.\r\n"
 					+ ":  |  |  :\r\n"
 					+ ":  '--'  :\r\n"
-					+ " '-....-'\n" + ANSI_RESET + "++++++++++++++\r\n"
+					+ " '-....-'\n" + ANSI_RESET + "++++++++++++++\r"
 							 + "++++------++++\r\n"
 							 + "+++|      |+++\r\n"
 							 + "+++|      |+++\r\n"
 							 + "+++|______|+++\r\n"
-							 + "++++++++++++++" + "    (\r\n"
-							 		+ ANSI_YELLOW + "     )\r\n\n"
+							 + "++++++++++++++" + "    \r\n"
+							 		+ ANSI_YELLOW + "     \r\n\n"
 							 		+ "    ()\r\n"
 							 		+ "   |--|\r\n"
 							 		+ "   |  |\r\n"
@@ -173,8 +181,7 @@ public class Room {
 		
 	public String chooseExit() {
 		// prompts user to move around map
-		String direc;
-			
+		String direc;		
 		System.out.println("Where would you like to move? (n, e, s, w)");
 		direc = myObj.nextLine(); 
 		return direc;
@@ -182,7 +189,7 @@ public class Room {
 	
 	
 	public Room moveRoom(Room[][] map) {
-		// takes return value of direc and adds it to the room
+		// takes return value of direc and adds it to the room to move user to next room
 		String chooseExitReturn = chooseExit();	
 			
 		if (chooseExitReturn.equals("n") && this.exitNorth == 1) {				
@@ -202,6 +209,20 @@ public class Room {
 			return this.moveRoom(map);
 			
 		}						
-	}	
+	}
 	
+	public void hasPotion(Inventory backpack) {	
+		// tracks whether or not user has reached a room with a potion (while referring to 2D arrays for potions)
+		// gives them a message and updates the value of the potion variable they reached in backpack object
+		if (this.hasHealthPotion == 1) {
+			System.out.println(ANSI_PURPLE + "You have reached a room with a potion!" + ANSI_RESET);
+			backpack.healthPotion++;
+		} else if (this.hasDamagePotion == 1) {
+			System.out.println(ANSI_PURPLE + "You have reached a room with a potion!" + ANSI_RESET);
+			backpack.damagePotion++;
+		} else if (this.hasCharmPotion == 1) {
+			System.out.println(ANSI_PURPLE + "You have reached a room with a potion!" + ANSI_RESET);
+			backpack.charmPotion++;
+		}
+	}
 }
